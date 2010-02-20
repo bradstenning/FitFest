@@ -27,6 +27,7 @@ public class SimpleSwingUI extends JPanel {
 		CellConstraints cc = new CellConstraints();
 
 		//======== this ========
+		setName("this");
 		setLayout(new FormLayout(
 			"$ugap, 2*(default, $lcgap), default, $ugap",
 			"$ugap, 4*(default, $lgap), default, $ugap"));
@@ -35,26 +36,40 @@ public class SimpleSwingUI extends JPanel {
 		//---- title ----
 		title.setText("Title");
 		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setName("title");
 		add(title, cc.xywh(2, 2, 5, 1));
 
 		//---- label2 ----
 		label2.setText("Text Field:");
+		label2.setName("label2");
 		add(label2, cc.xy(2, 4));
+
+		//---- textField ----
+		textField.setName("textField");
 		add(textField, cc.xywh(4, 4, 3, 1));
 
 		//---- label3 ----
 		label3.setText("Formatted Text Field:");
+		label3.setName("label3");
 		add(label3, cc.xy(2, 6));
+
+		//---- formattedTextField ----
+		formattedTextField.setName("formattedTextField");
 		add(formattedTextField, cc.xywh(4, 6, 3, 1));
 
 		//---- label1 ----
 		label1.setText("Combo Box");
+		label1.setName("label1");
 		add(label1, cc.xy(2, 8));
+
+		//---- comboBox ----
+		comboBox.setName("comboBox");
 		add(comboBox, cc.xywh(4, 8, 3, 1));
 
 		//---- button ----
 		button.setText("Button");
 		button.setMnemonic('B');
+		button.setName("button");
 		add(button, cc.xywh(4, 10, 3, 1));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
