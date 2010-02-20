@@ -4,5 +4,5 @@ import org.fest.swing.fixture.FrameFixture;
 
 public interface CommandProcessor {
 	String getCommandString();
-	void handleRow(FrameFixture window, RowHandler resultHandler);
+	void handleRow(FrameFixture window, RowHandler rowHandler);
 }

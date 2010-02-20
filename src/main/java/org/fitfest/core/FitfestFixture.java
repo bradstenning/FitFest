@@ -1,7 +1,7 @@
 package org.fitfest.core;
 
 import java.awt.Frame;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.fest.swing.core.BasicRobot;
@@ -15,9 +15,15 @@ import fitnesse.fixtures.TableFixture;
 
 public class FitfestFixture extends TableFixture {
 	private FrameFixture window = null;
-	private Map<String, ClickCommandProcessor> commandHandlers = Collections.singletonMap("click", new ClickCommandProcessor());
+	private final Map<String, CommandProcessor> commandHandlers = new HashMap<String, CommandProcessor>();
 	private Robot m_robot;
-	
+	public FitfestFixture() 
+	{
+		CommandProcessor commandProcessor = new ClickCommandProcessor();
+		commandHandlers.put(commandProcessor.getCommandString(), commandProcessor);
+		commandProcessor = new EnterTextCommandProcessor();
+		commandHandlers.put(commandProcessor.getCommandString(), commandProcessor);
+	}
 	protected void doStaticTable(int rows) {
 		try
 		{
@@ -42,8 +48,14 @@ public class FitfestFixture extends TableFixture {
 						FitfestFixture.this.wrong(row, column, actual);
 					}
 				};
-
-				commandHandlers.get(getText(row, 0)).handleRow(window, rowHandler);
+				try{
+					commandHandlers.get(getText(row, 0)).handleRow(window, rowHandler);
+					
+				}
+				catch (RuntimeException e) {
+					wrong(row,1,e.getMessage());
+					System.err.println(e);
+				}
 			}
 		}
 		finally
