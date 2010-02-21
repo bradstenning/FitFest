@@ -24,6 +24,7 @@ public class FitfestFixture extends TableFixture {
 		addCommandProcessor(new CheckTextCommandProcessor());
 		addCommandProcessor(new SelectComboBoxItemCommandProcessor());
 		addCommandProcessor(new CheckComboBoxItemCommandProcessor());
+		addCommandProcessor(new SleepCommandProcessor());
 	}
 	private void addCommandProcessor(CommandProcessor commandProcessor) {
 		commandHandlers.put(commandProcessor.getCommandString(), commandProcessor);
