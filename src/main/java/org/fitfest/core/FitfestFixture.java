@@ -19,9 +19,13 @@ public class FitfestFixture extends TableFixture {
 	private Robot m_robot;
 	public FitfestFixture() 
 	{
-		CommandProcessor commandProcessor = new ClickCommandProcessor();
-		commandHandlers.put(commandProcessor.getCommandString(), commandProcessor);
-		commandProcessor = new EnterTextCommandProcessor();
+		addCommandProcessor(new ClickCommandProcessor());
+		addCommandProcessor(new EnterTextCommandProcessor());
+		addCommandProcessor(new CheckTextCommandProcessor());
+		addCommandProcessor(new SelectComboBoxItemCommandProcessor());
+		addCommandProcessor(new CheckComboBoxItemCommandProcessor());
+	}
+	private void addCommandProcessor(CommandProcessor commandProcessor) {
 		commandHandlers.put(commandProcessor.getCommandString(), commandProcessor);
 	}
 	protected void doStaticTable(int rows) {
@@ -49,7 +53,13 @@ public class FitfestFixture extends TableFixture {
 					}
 				};
 				try{
-					commandHandlers.get(getText(row, 0)).handleRow(window, rowHandler);
+					CommandProcessor commandProcessor = commandHandlers.get(getText(row, 0));
+					if(commandProcessor == null)
+					{
+						wrong(row,0,"missing command processor");
+						continue;
+					}
+					commandProcessor.handleRow(window, rowHandler);
 					
 				}
 				catch (RuntimeException e) {

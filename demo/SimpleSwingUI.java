@@ -63,6 +63,11 @@ public class SimpleSwingUI extends JPanel {
 		add(label1, cc.xy(2, 8));
 
 		//---- comboBox ----
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {
+			"first",
+			"second",
+			"third"
+		}));
 		comboBox.setName("comboBox");
 		add(comboBox, cc.xywh(4, 8, 3, 1));
 
