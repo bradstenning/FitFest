@@ -21,12 +21,12 @@ public class CheckComboBoxItemCommandProcessor implements CommandProcessor
         try
         {
             comboBoxFixture.requireSelection( rowHandler.getText( 2 ) );
+            rowHandler.right( 2 );
         }
         catch ( final AssertionError e )
         {
             rowHandler.wrong( 2, comboBoxFixture.targetCastedTo( JComboBox.class ).getSelectedItem().toString() );
         }
-        rowHandler.right( 2 );
 
     }
 

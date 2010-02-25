@@ -27,12 +27,12 @@ public class BackgroundColorCommandProcessor implements CommandProcessor
         try
         {
             componentFixture.background().requireEqualTo( rowHandler.getText( 2 ) );
+            rowHandler.right( 2 );
         }
         catch ( final AssertionError e )
         {
             rowHandler.wrong( 2, componentFixture.background().target().toString() );
         }
-        rowHandler.right( 2 );
 
     }
 

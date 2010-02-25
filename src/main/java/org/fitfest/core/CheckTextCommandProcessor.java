@@ -19,12 +19,12 @@ public class CheckTextCommandProcessor implements CommandProcessor
         try
         {
             textBox.requireText( rowHandler.getText( 2 ) );
+            rowHandler.right( 2 );
         }
         catch ( final AssertionError e )
         {
             rowHandler.wrong( 2, textBox.text() );
         }
-        rowHandler.right( 2 );
 
     }
 
