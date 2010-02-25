@@ -27,6 +27,7 @@ public class FitfestFixture extends TableFixture
         addCommandProcessor( new SelectComboBoxItemCommandProcessor() );
         addCommandProcessor( new CheckComboBoxItemCommandProcessor() );
         addCommandProcessor( new SleepCommandProcessor() );
+        addCommandProcessor( new BackgroundColorCommandProcessor() );
     }
 
     private void addCommandProcessor( final CommandProcessor commandProcessor )
@@ -92,6 +93,8 @@ public class FitfestFixture extends TableFixture
 
     private void startapp()
     {
+        if( args.length < 2 ) return;
+        
         m_robot = BasicRobot.robotWithNewAwtHierarchy();
 
         ApplicationLauncher.application( args[0] ).start();
