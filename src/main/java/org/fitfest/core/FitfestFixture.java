@@ -1,8 +1,6 @@
 package org.fitfest.core;
 
 import java.awt.Frame;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.fest.swing.core.BasicRobot;
 import org.fest.swing.core.GenericTypeMatcher;
@@ -16,23 +14,8 @@ import fitnesse.fixtures.TableFixture;
 public class FitfestFixture extends TableFixture
 {
     private FrameFixture window = null;
-    private final Map<String, CommandProcessor> commandHandlers = new HashMap<String, CommandProcessor>();
+    private final CommandSelector commandHandlers = new CommandSelector();
     private Robot m_robot;
-
-    public FitfestFixture()
-    {
-        addCommandProcessor( new ClickCommandProcessor() );
-        addCommandProcessor( new EnterTextCommandProcessor() );
-        addCommandProcessor( new CheckTextCommandProcessor() );
-        addCommandProcessor( new SelectComboBoxItemCommandProcessor() );
-        addCommandProcessor( new CheckComboBoxItemCommandProcessor() );
-        addCommandProcessor( new SleepCommandProcessor() );
-    }
-
-    private void addCommandProcessor( final CommandProcessor commandProcessor )
-    {
-        commandHandlers.put( commandProcessor.getCommandString(), commandProcessor );
-    }
 
     @Override
     protected void doStaticTable( final int rows )
@@ -68,7 +51,7 @@ public class FitfestFixture extends TableFixture
                 };
                 try
                 {
-                    final CommandProcessor commandProcessor = commandHandlers.get( getText( row, 0 ) );
+                    final CommandProcessor commandProcessor = commandHandlers.getCommandHandler( getText( row, 0 ) );
                     if ( commandProcessor == null )
                     {
                         wrong( row, 0, "missing command processor" );
