@@ -1,21 +1,30 @@
 package org.fitfest.core;
 
 import java.awt.Frame;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.fest.swing.core.BasicRobot;
 import org.fest.swing.core.GenericTypeMatcher;
 import org.fest.swing.core.Robot;
 import org.fest.swing.finder.WindowFinder;
 import org.fest.swing.fixture.FrameFixture;
+import org.fest.swing.image.ScreenshotTaker;
 import org.fest.swing.launcher.ApplicationLauncher;
 
+import fit.Parse;
 import fitnesse.fixtures.TableFixture;
 
 public class FitfestFixture extends TableFixture
 {
+    private static final String FITNESSE_ROOT = "FitNesseRoot/";
+    private static final String SCREENSHOT_HTML_PATH = "files/screenshots/";
     private FrameFixture window = null;
     private final CommandSelector commandHandlers = new CommandSelector();
     private Robot m_robot;
+    private ScreenshotTaker screenshotTaker = new ScreenshotTaker();
+    private SimpleDateFormat TIMESTAMP_FORMAT = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
     @Override
     protected void doStaticTable( final int rows )
@@ -97,4 +106,27 @@ public class FitfestFixture extends TableFixture
 
     }
 
+    @Override
+    protected void wrong( int row, int column, String actual )
+    {
+        super.wrong( row, column, actual );
+        takeScreenshot( row, column );
+    }
+
+    protected void takeScreenshot( int row, int column )
+    {
+        takeScreenshot(getCell(row, column));
+    }
+
+    protected void takeScreenshot( Parse cell )
+    {
+        File directory = new File(FITNESSE_ROOT+SCREENSHOT_HTML_PATH);
+        if(directory.exists() && directory.isDirectory() || directory.mkdir())
+        {
+            String filename = TIMESTAMP_FORMAT.format( new Date() );
+            String screenshot = SCREENSHOT_HTML_PATH + filename + ".png";
+            screenshotTaker.saveComponentAsPng( window.component(), FITNESSE_ROOT+SCREENSHOT_HTML_PATH + filename + ".png" );
+            cell.addToBody( "<hr><a href='"+screenshot+"'>screenshot<a>" );
+        }
+    }
 }
