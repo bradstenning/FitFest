@@ -11,7 +11,6 @@ import org.fest.swing.core.Robot;
 import org.fest.swing.finder.WindowFinder;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.image.ScreenshotTaker;
-import org.fest.swing.launcher.ApplicationLauncher;
 
 import fit.Parse;
 import fitnesse.fixtures.TableFixture;
@@ -86,9 +85,8 @@ public class FitfestFixture extends TableFixture
     {
         if( args.length < 2 ) return;
         
-        m_robot = BasicRobot.robotWithNewAwtHierarchy();
+        m_robot = BasicRobot.robotWithCurrentAwtHierarchy();
 
-        ApplicationLauncher.application( args[0] ).start();
         window = WindowFinder.findFrame( new GenericTypeMatcher<Frame>( Frame.class )
         {
             @Override
@@ -102,7 +100,7 @@ public class FitfestFixture extends TableFixture
 
     private void tearDown()
     {
-        if ( m_robot != null ) m_robot.cleanUp();
+        if ( m_robot != null ) m_robot.cleanUpWithoutDisposingWindows();
 
     }
 

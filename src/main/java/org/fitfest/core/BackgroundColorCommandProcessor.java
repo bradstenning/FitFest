@@ -20,7 +20,7 @@ public class BackgroundColorCommandProcessor implements CommandProcessor
     {
         ComponentFinder finder = window.robot.finder();
         ComponentFixture<Component> componentFixture = 
-            new ComponentFixture<Component>(window.robot, finder.findByName( rowHandler.getText( 1 ) ))
+            new ComponentFixture<Component>(window.robot, finder.findByName(window.component(), rowHandler.getText( 1 ) ))
         {
         };
         
