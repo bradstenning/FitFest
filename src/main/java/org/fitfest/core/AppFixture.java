@@ -11,6 +11,7 @@ public class AppFixture extends TableFixture
     protected void doStaticTable( final int rows )
     {
         ApplicationLauncher.application( args[0] ).start();
+        right( 0, 0 );
     }
 
 }
