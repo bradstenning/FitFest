@@ -23,7 +23,7 @@ public class FitfestFixture extends TableFixture
     private final CommandSelector commandHandlers = new CommandSelector();
     private Robot m_robot;
     private ScreenshotTaker screenshotTaker = new ScreenshotTaker();
-    private SimpleDateFormat TIMESTAMP_FORMAT = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+    private SimpleDateFormat TIMESTAMP_FORMAT = new SimpleDateFormat( "yyyyMMddHHmmssSSS" );
 
     @Override
     protected void doStaticTable( final int rows )
@@ -56,6 +56,12 @@ public class FitfestFixture extends TableFixture
                     {
                         FitfestFixture.this.wrong( row, column, actual );
                     }
+
+                    @Override
+                    public void screenshot( int column )
+                    {
+                        FitfestFixture.this.screenshot( row, column );
+                    }
                 };
                 try
                 {
@@ -83,8 +89,8 @@ public class FitfestFixture extends TableFixture
 
     private void startapp()
     {
-        if( args.length < 2 ) return;
-        
+        if ( args.length < 2 ) return;
+
         m_robot = BasicRobot.robotWithCurrentAwtHierarchy();
 
         window = WindowFinder.findFrame( new GenericTypeMatcher<Frame>( Frame.class )
@@ -101,30 +107,30 @@ public class FitfestFixture extends TableFixture
     private void tearDown()
     {
         if ( m_robot != null ) m_robot.cleanUpWithoutDisposingWindows();
-
     }
 
     @Override
     protected void wrong( int row, int column, String actual )
     {
         super.wrong( row, column, actual );
-        takeScreenshot( row, column );
+        getCell( row, column ).addToBody( "<hr>" );
+        screenshot( row, column );
     }
 
-    protected void takeScreenshot( int row, int column )
+    protected void screenshot( int row, int column )
     {
-        takeScreenshot(getCell(row, column));
+        screenshot( getCell( row, column ) );
     }
 
-    protected void takeScreenshot( Parse cell )
+    protected void screenshot( Parse cell )
     {
-        File directory = new File(FITNESSE_ROOT+SCREENSHOT_HTML_PATH);
-        if(directory.exists() && directory.isDirectory() || directory.mkdir())
+        File directory = new File( FITNESSE_ROOT + SCREENSHOT_HTML_PATH );
+        if ( directory.exists() && directory.isDirectory() || directory.mkdir() )
         {
             String filename = TIMESTAMP_FORMAT.format( new Date() );
             String screenshot = SCREENSHOT_HTML_PATH + filename + ".png";
-            screenshotTaker.saveComponentAsPng( window.component(), FITNESSE_ROOT+SCREENSHOT_HTML_PATH + filename + ".png" );
-            cell.addToBody( "<hr><a href='"+screenshot+"'>screenshot<a>" );
+            screenshotTaker.saveComponentAsPng( window.component(), FITNESSE_ROOT + SCREENSHOT_HTML_PATH + filename + ".png" );
+            cell.addToBody( "<a href='" + screenshot + "'>screenshot<a>" );
         }
     }
 }

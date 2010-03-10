@@ -9,4 +9,6 @@ public interface RowHandler
     public void wrong( int column );
 
     public void wrong( int column, String actual );
+
+    public void screenshot( int column );
 }
