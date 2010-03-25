@@ -12,6 +12,7 @@ public class JavaAppFixture extends TableFixture
     {
         for ( int i = 0; i < rows; i++ )
         {
+<<<<<<< HEAD
             try
             {
                 parseSystemProperties( i );
@@ -35,6 +36,19 @@ public class JavaAppFixture extends TableFixture
                 e.printStackTrace();
                 wrong(i,0);
             }
+=======
+            parseSystemProperties( i );
+            
+            String[] cmdLineArgs = parseCmdLineArgs( i );
+            
+            ApplicationLauncher application = ApplicationLauncher.application( getText( i, 0 ) );
+            if(cmdLineArgs != null)
+            {
+                application.withArgs( cmdLineArgs );
+            }
+            application.start();
+            right( i, 0 );
+>>>>>>> 832eff8c4377a613501ab81ca049d5056cba09e4
         }
     }
 
