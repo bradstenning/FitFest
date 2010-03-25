@@ -31,7 +31,7 @@ public class JavaAppFixture extends TableFixture
             {
                 System.err.println("Format of the table is:\n\n" +
                 "|Class name with main method|SystemProperties=value|CommandLineArg1 CommandLineArg2|\n" +
-                "Only the first column is required\n\n");
+                "\n\n");
                 e.printStackTrace();
                 wrong(i,0);
             }
@@ -62,7 +62,7 @@ public class JavaAppFixture extends TableFixture
     {
         try
         {
-            String sysargs = getText( i, 1 );
+            String sysargs = getText( i, 2 );
             if(sysargs != null && sysargs.length() > 1)
             {
                 String[] systemProperties = sysargs.split( " " );
@@ -72,7 +72,10 @@ public class JavaAppFixture extends TableFixture
                     if(keyValue.length == 2 )
                         System.setProperty( keyValue[0], keyValue[1] );
                     else
+                    {
+                        System.err.println("sysargs" +sysargs);
                         wrong(i,1);
+                    }
                 }
                 right(i,1);
             }
