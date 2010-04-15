@@ -35,34 +35,7 @@ public class FitfestFixture extends TableFixture
             for ( int i = 0; i < rows; i++ )
             {
                 final int row = i;
-                final RowHandler rowHandler = new RowHandler()
-                {
-                    public String getText( final int column )
-                    {
-                        return FitfestFixture.this.getText( row, column );
-                    }
-
-                    public void right( final int column )
-                    {
-                        FitfestFixture.this.right( row, column );
-                    }
-
-                    public void wrong( final int column )
-                    {
-                        FitfestFixture.this.wrong( row, column );
-                    }
-
-                    public void wrong( final int column, final String actual )
-                    {
-                        FitfestFixture.this.wrong( row, column, actual );
-                    }
-
-                    @Override
-                    public void screenshot( int column )
-                    {
-                        FitfestFixture.this.screenshot( row, column );
-                    }
-                };
+                final RowHandler rowHandler = new FitfestRowHandler( row );
                 try
                 {
                     final CommandProcessor commandProcessor = commandHandlers.getCommandHandler( getText( row, 0 ) );
@@ -129,6 +102,42 @@ public class FitfestFixture extends TableFixture
             String screenshot = SCREENSHOT_HTML_PATH + filename + ".png";
             screenshotTaker.saveComponentAsPng( window.component(), FITNESSE_ROOT + SCREENSHOT_HTML_PATH + filename + ".png" );
             cell.addToBody( "<a href='" + screenshot + "'>screenshot<a>" );
+        }
+    }
+
+    private final class FitfestRowHandler implements RowHandler
+    {
+        private final int row;
+    
+        private FitfestRowHandler( int row )
+        {
+            this.row = row;
+        }
+    
+        public String getText( final int column )
+        {
+            return FitfestFixture.this.getText( row, column );
+        }
+    
+        public void right( final int column )
+        {
+            FitfestFixture.this.right( row, column );
+        }
+    
+        public void wrong( final int column )
+        {
+            FitfestFixture.this.wrong( row, column );
+        }
+    
+        public void wrong( final int column, final String actual )
+        {
+            FitfestFixture.this.wrong( row, column, actual );
+        }
+    
+        @Override
+        public void screenshot( int column )
+        {
+            FitfestFixture.this.screenshot( row, column );
         }
     }
 }

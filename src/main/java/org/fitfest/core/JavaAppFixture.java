@@ -7,6 +7,10 @@ import fitnesse.fixtures.TableFixture;
 public class JavaAppFixture extends TableFixture
 {
 
+    private static final int CLASS_NAME_COLUMN = 0;
+    private static final int SYS_PROP_COLUMN = 1;
+    private static final int CMD_LINE_ARGS_COLUMN = 2;
+
     @Override
     protected void doStaticTable( final int rows )
     {
@@ -14,18 +18,25 @@ public class JavaAppFixture extends TableFixture
         {
             try
             {
-                parseSystemProperties( i );
+                // the crazy if is because if a column is not defined you get the
+                // value of the last column defined in the table 
+                // this test is a quick hack to make sure that is not going on.
+                String[] cmdLineArgs = null;
+                if(!(getText( i, CLASS_NAME_COLUMN ).equals( getText(i,SYS_PROP_COLUMN) )&&
+                   getText( i, CLASS_NAME_COLUMN ).equals( getText(i,CMD_LINE_ARGS_COLUMN) )))
+                {
+                    parseSystemProperties( i );
+                    cmdLineArgs = parseCmdLineArgs( i );
+                }
 
-                String[] cmdLineArgs = parseCmdLineArgs( i );
-
-                ApplicationLauncher application = ApplicationLauncher.application( getText( i, 0 ) );
+                ApplicationLauncher application = ApplicationLauncher.application( getText( i, CLASS_NAME_COLUMN ) );
                 if(cmdLineArgs != null)
                 {
                     application.withArgs( cmdLineArgs );
                 }
                 application.start();
                 
-                right( i, 0 );
+                right( i, CLASS_NAME_COLUMN );
             }
             catch(Exception e)
             {
@@ -33,7 +44,7 @@ public class JavaAppFixture extends TableFixture
                 "|Class name with main method|SystemProperties=value|CommandLineArg1 CommandLineArg2|\n" +
                 "\n\n");
                 e.printStackTrace();
-                wrong(i,0);
+                wrong(i,CLASS_NAME_COLUMN);
             }
         }
     }
@@ -43,17 +54,17 @@ public class JavaAppFixture extends TableFixture
         String[] systemProperties = null;
         try
         {
-            String progargs = getText( i, 2 );
+            String progargs = getText( i, CMD_LINE_ARGS_COLUMN );
             if(progargs != null && progargs.length() > 1)
             {
                 systemProperties = progargs.split( " " );
-                right(i,2);
+                right(i,CMD_LINE_ARGS_COLUMN);
             }
         }
         catch ( Exception e )
         {
             e.printStackTrace();
-            wrong(i,2);
+            wrong(i,CMD_LINE_ARGS_COLUMN);
         }
         return systemProperties;
     }
@@ -62,7 +73,7 @@ public class JavaAppFixture extends TableFixture
     {
         try
         {
-            String sysargs = getText( i, 2 );
+            String sysargs = getText( i, SYS_PROP_COLUMN );
             if(sysargs != null && sysargs.length() > 1)
             {
                 String[] systemProperties = sysargs.split( " " );
@@ -74,16 +85,16 @@ public class JavaAppFixture extends TableFixture
                     else
                     {
                         System.err.println("sysargs" +sysargs);
-                        wrong(i,1);
+                        wrong(i,SYS_PROP_COLUMN);
                     }
                 }
-                right(i,1);
+                right(i,SYS_PROP_COLUMN);
             }
         }
         catch (Exception e) 
         {
             e.printStackTrace();
-            wrong(i,1);
+            wrong(i,SYS_PROP_COLUMN);
         }
     }
 
