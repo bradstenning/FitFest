@@ -59,7 +59,6 @@ public class JavaAppletFixture extends TableFixture
         for ( int i = 0; i < urls.length; i++ )
         {
             urls[i] = new URL( url.substring( 0, url.lastIndexOf( File.separatorChar ) + 1 ) + archive.get( i ) );
-            System.out.println( urls[i] );
         }
 
         ClassLoader cl = new URLClassLoader( urls );
@@ -67,8 +66,7 @@ public class JavaAppletFixture extends TableFixture
         Class<? extends Applet> appletClass = (Class<? extends Applet>) cl.loadClass( code.substring( 0, code.length() - ".class".length() ).replaceAll( "/",
                 "." ) );
         Thread.currentThread().setContextClassLoader( cl );
-        System.out.println( appletClass );
-        System.out.println( AppletLauncher.applet( appletClass ).start() );
+        AppletLauncher.applet( appletClass ).start();
     }
 
 

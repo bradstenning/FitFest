@@ -89,8 +89,6 @@ public class FitfestFixture extends TableFixture
 
     private void startapp()
     {
-        if ( args.length < 2 ) return;
-
         m_robot = BasicRobot.robotWithCurrentAwtHierarchy();
 
         window = WindowFinder.findFrame( new GenericTypeMatcher<Frame>( Frame.class )
@@ -98,7 +96,7 @@ public class FitfestFixture extends TableFixture
             @Override
             protected boolean isMatching( final Frame frame )
             {
-                return args[1].equals( frame.getTitle() ) && frame.isShowing();
+                return args[0].equals( frame.getTitle() ) && frame.isShowing();
             }
 
         } ).using( m_robot );
