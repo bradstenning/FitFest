@@ -49,7 +49,8 @@ public class FitfestFixture extends TableFixture
                 }
                 catch ( final RuntimeException e )
                 {
-                    wrong( row, 1, e.getMessage() );
+                    wrong( row, 1 );
+                    getCell( row, 1 ).addToBody( "<pre>" + e.getMessage() + "</pre>" );
                     System.err.println( e );
                 }
             }
