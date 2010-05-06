@@ -19,9 +19,9 @@ public class FitfestFixture extends TableFixture
 {
     private static final String FITNESSE_ROOT = "FitNesseRoot/";
     private static final String SCREENSHOT_HTML_PATH = "files/screenshots/";
-    private FrameFixture window = null;
+    private static FrameFixture window = null;
     private final CommandSelector commandHandlers = new CommandSelector();
-    private Robot m_robot;
+    private static Robot m_robot;
     private ScreenshotTaker screenshotTaker = new ScreenshotTaker();
     private SimpleDateFormat TIMESTAMP_FORMAT = new SimpleDateFormat( "yyyyMMddHHmmssSSS" );
 
@@ -30,7 +30,7 @@ public class FitfestFixture extends TableFixture
     {
         try
         {
-            startapp();
+            findWindowForTestingIn();
 
             for ( int i = 0; i < rows; i++ )
             {
@@ -60,8 +60,10 @@ public class FitfestFixture extends TableFixture
         }
     }
 
-    private void startapp()
+    private void findWindowForTestingIn()
     {
+        if(args.length == 0) return; // Not defied. Window from last run will be used if it exists 
+        
         m_robot = BasicRobot.robotWithCurrentAwtHierarchy();
 
         window = WindowFinder.findFrame( new GenericTypeMatcher<Frame>( Frame.class )
