@@ -66,7 +66,9 @@ public class JavaAppletFixture extends TableFixture
         Class<? extends Applet> appletClass = (Class<? extends Applet>) cl.loadClass( code.substring( 0, code.length() - ".class".length() ).replaceAll( "/",
                 "." ) );
         Thread.currentThread().setContextClassLoader( cl );
-        AppletLauncher.applet( appletClass ).start();
+        Applet applet = appletClass.newInstance();
+        AppletLauncher.applet( applet ).start();
+        applet.setSize( java.awt.Toolkit.getDefaultToolkit().getScreenSize() );
     }
 
 
