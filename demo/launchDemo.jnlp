@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP File for SwingSet2 Demo Application -->
+<jnlp
+  spec="1.5+"
+  codebase="http://localhost/jaws/apps"
+  href="launchDemo.jnlp">
+  <information>
+    <title>Demo using jnlp</title>
+    <vendor>FitFest.</vendor>
+    <!-- <homepage href="docs/help.html"/>
+    <description>SwingSet2 Demo Application</description>
+    <description kind="short">A demo of the capabilities 
+    of the Swing Graphical User Interface.</description>
+    <icon href="images/swingset2.jpg"/>
+    <icon kind="splash" href="images/splash.gif"/>
+    <offline-allowed/> 
+    <association mime-type="application-x/swingset2-file" extensions="swingset2">
+    <shortcut online="false">
+      <desktop/>
+      <menu submenu="My Corporation Apps"/>
+    </shortcut> -->
+  </information>
+  <!--<information os="linux">   
+    <title> SwingSet2 Demo on Linux </title>
+    <homepage href="docs/linuxhelp.html">
+  </information>-->
+  <!--<security>
+      <all-permissions/>
+  </security>-->
+  <resources>
+    <j2se version="1.5+" />
+    <jar href="Demo.jar"/>
+  </resources>
+  <application-desc main-class="Main"/>
+</jnlp> 
