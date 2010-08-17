@@ -11,6 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.fest.swing.launcher.ApplicationLauncher;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -61,15 +62,42 @@ public class JNLPFixture extends TableFixture
         URL[] urls = parseUrlClassPath( doc );
         
         String mainClass = parseMainClass( doc );
+        String[] args = parseApplicationArgs( doc );
+        putSystemProperties( doc );
         
         ClassLoader cl = new URLClassLoader( urls );
         Thread.currentThread().setContextClassLoader( cl );
 
         ApplicationLauncher application = ApplicationLauncher.application( mainClass );
-//      TODO: added in args        application.withArgs( new String[]{"test","test"} );
+        application.withArgs( args );
         application.start();
         
      }
+
+    private void putSystemProperties( Document doc )
+    {
+        NodeList argList = doc.getElementsByTagName("property");
+        for ( int i = 0; i < argList.getLength(); i++ )
+        {
+            Element element = (Element) argList.item( i );
+            System.setProperty( element.getAttribute( "name" ),
+                                element.getAttribute( "value" ) );
+        }
+    }
+
+
+    private String[] parseApplicationArgs( Document doc )
+    {
+        NodeList argList = doc.getElementsByTagName("argument");
+        String[] args = new String[argList.getLength()];
+        for ( int i = 0; i < argList.getLength(); i++ )
+        {
+            Element element = (Element) argList.item( i );
+            args[i] = element.getNodeValue();
+        }
+        return args;
+    }
+
 
     /**
      * Pulls the main-class value from the Doc
