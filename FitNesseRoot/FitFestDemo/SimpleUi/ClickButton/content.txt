@@ -1,0 +1,6 @@
+!|org.fitfest.core.FitfestFixture|Simple UI|
+|click                           |button   |
+|click                           |button   |
+
+!|org.fitfest.core.AntiFitfestFixture|Simple UI    |
+|click                               |missingButton|

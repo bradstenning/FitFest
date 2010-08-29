@@ -1,0 +1,6 @@
+!|org.fitfest.core.FitfestFixture|Simple UI|
+|sleep                           |100      |
+
+This just tests to make sure if it throws an exception based on user input will mark it as wrong
+!|org.fitfest.core.AntiFitfestFixture|Simple UI|
+|sleep                               |jc@      |

@@ -1,0 +1,9 @@
+!path ${FEST_LIBS_PATH}/org.fitfest.sample-0.0.1-SNAPSHOT.jar
+
+This test reads the above jar file and runs client Command Processors found in that jar
+
+!|org.fitfest.core.FitfestFixture|
+|dummy|something|
+
+!|org.fitfest.core.AntiFitfestFixture|
+|dummy2|something|

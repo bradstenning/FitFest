@@ -1,0 +1,5 @@
+!|org.fitfest.core.FitfestFixture|Simple UI|
+|backgroundColor|textField|ffffff|
+
+!|org.fitfest.core.AntiFitfestFixture|Simple UI|
+|backgroundColor|textField|ffaaff|

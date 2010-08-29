@@ -1,0 +1,2 @@
+!|org.fitfest.core.JNLPFixture|
+|http://localhost/jaws/apps/launchDemo.jnlp|||

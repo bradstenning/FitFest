@@ -1,0 +1,10 @@
+!|org.fitfest.core.FitfestFixture|Simple UI         |
+|enterText                       |textField         |type this in      |
+|enterText                       |textField         |now this          |
+|enterText                       |formattedTextField|type in next field|
+|checkText                       |textField         |now this          |
+|checkText                       |formattedTextField|type in nex t field|
+
+!|org.fitfest.core.AntiFitfestFixture|Simple UI          |
+|checkText                           |formattedTextField|type i n next field|
+|checkText                           |textField         |nope               |

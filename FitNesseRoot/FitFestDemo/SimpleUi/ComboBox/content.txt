@@ -1,0 +1,8 @@
+!|org.fitfest.core.FitfestFixture|Simple UI|
+|checkComboBoxItem               |comboBox|first   |
+|selectComboBoxItem              |comboBox|second   |
+|checkComboBoxItem               |comboBox|second   |
+
+!|org.fitfest.core.AntiFitfestFixture|Simple UI|
+|selectComboBoxItem                  |comboBox|missing  |
+|checkComboBoxItem                   |comboBox|first   |

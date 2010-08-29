@@ -1,0 +1,10 @@
+!path ${FIT_FEST_PATH}/target/classes/
+!path ${FIT_FEST_PATH}/target/classes/forms.jar
+!path ${FEST_LIBS_PATH}/fest-swing-1.2.1.jar
+!path ${FEST_LIBS_PATH}/fest-assert-1.2.jar
+!path ${FEST_LIBS_PATH}/fest-reflect-1.1.jar
+!path ${FEST_LIBS_PATH}/fest-util-1.1.jar
+
+
+|!contents|
+
