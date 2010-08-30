@@ -3,7 +3,7 @@ package org.fitfest.core;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JTextComponentFixture;
 
-public class CheckTextCommandProcessor implements CommandProcessor
+public class CheckTextCommandProcessor extends AbstractCommandProcessor<JTextComponentFixture>
 {
 
     @Override
@@ -13,19 +13,22 @@ public class CheckTextCommandProcessor implements CommandProcessor
     }
 
     @Override
-    public void handleRow( final FrameFixture window, final RowHandler rowHandler )
+    public JTextComponentFixture findFixture( FrameFixture window, RowHandler rowHandler )
     {
-        final JTextComponentFixture textBox = window.textBox( rowHandler.getText( 1 ) );
-        try
-        {
-            textBox.requireText( rowHandler.getText( 2 ) );
-            rowHandler.right( 2 );
-        }
-        catch ( final AssertionError e )
-        {
-            rowHandler.wrong( 2, textBox.text() );
-        }
+        return window.textBox( rowHandler.getText( 1 ) );
+    }
 
+    @Override
+    public boolean evaluate( RowHandler rowHandler, JTextComponentFixture fixture )
+    {
+        fixture.requireText( rowHandler.getText( 2 ) );
+        return true;
+    }
+
+    @Override
+    public String actual( JTextComponentFixture fixture )
+    {
+        return fixture.text();
     }
 
 }

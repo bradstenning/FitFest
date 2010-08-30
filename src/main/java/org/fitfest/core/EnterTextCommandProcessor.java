@@ -27,7 +27,7 @@ public class EnterTextCommandProcessor extends AbstractCommandProcessor<JTextCom
     }
 
     @Override
-    public String actual( FrameFixture window, RowHandler rowHandler, JTextComponentFixture fixture )
+    public String actual( JTextComponentFixture fixture )
     {
         return null;
     }
