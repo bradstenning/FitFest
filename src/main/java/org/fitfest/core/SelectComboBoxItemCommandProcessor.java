@@ -2,6 +2,7 @@ package org.fitfest.core;
 
 import java.util.Arrays;
 
+import org.fest.swing.exception.LocationUnavailableException;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JComboBoxFixture;
 
@@ -27,8 +28,21 @@ public class SelectComboBoxItemCommandProcessor extends AbstractCommandProcessor
     }
 
     @Override
-    public String failureMessage(FrameFixture window, RowHandler rowHandler, JComboBoxFixture fixture)
+    public String actual(FrameFixture window, RowHandler rowHandler, JComboBoxFixture fixture)
     {
         return "Item not found. Available items: " + Arrays.asList( fixture.contents() );
+    }
+
+    @Override
+    public void handleException( FrameFixture window, RowHandler rowHandler, JComboBoxFixture fixture, Throwable e )
+    {
+        if( e instanceof LocationUnavailableException )
+        {
+            super.handleException( window, rowHandler, fixture, new AssertionError() );
+        }
+        else
+        {
+            super.handleException( window, rowHandler, fixture, e );
+        }
     }
 }

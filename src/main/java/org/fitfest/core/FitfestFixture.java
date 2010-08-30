@@ -91,6 +91,12 @@ public class FitfestFixture extends TableFixture
         screenshot( row, column );
     }
 
+    public void wrong( int row, int column, Throwable e )
+    {
+        super.wrong( row, column );
+        getCell( row, column ).addToBody( "<pre>" + e.getMessage() + "</pre>" );
+    }
+    
     protected void screenshot( int row, int column )
     {
         screenshot( getCell( row, column ) );
@@ -135,6 +141,12 @@ public class FitfestFixture extends TableFixture
         public void wrong( final int column, final String actual )
         {
             FitfestFixture.this.wrong( row, column, actual );
+        }
+
+        @Override
+        public void wrong( int column, Throwable e )
+        {
+            FitfestFixture.this.wrong( row, column, e );
         }
     
         @Override
