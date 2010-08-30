@@ -150,6 +150,12 @@ public class FitfestFixture extends TableFixture
         }
     
         @Override
+        public void append( int column, String text )
+        {
+            getCell( row, column ).addToBody( text );
+        }
+        
+        @Override
         public void screenshot( int column )
         {
             FitfestFixture.this.screenshot( row, column );

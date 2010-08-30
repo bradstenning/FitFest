@@ -33,7 +33,7 @@ public class BackgroundColorCommandProcessor extends AbstractCommandProcessor<Co
     }
 
     @Override
-    public String actual( FrameFixture window, RowHandler rowHandler, ComponentFixture<Component> fixture )
+    public String actual( ComponentFixture<Component> fixture )
     {
         return fixture.background().target().toString();
     }
