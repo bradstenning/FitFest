@@ -1,7 +1,9 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JTextComponentFixture;
+import org.fitfest.core.AbstractCommandProcessor;
+import org.fitfest.core.RowHandler;
 
 public class EnterTextCommandProcessor extends AbstractCommandProcessor<JTextComponentFixture>
 {

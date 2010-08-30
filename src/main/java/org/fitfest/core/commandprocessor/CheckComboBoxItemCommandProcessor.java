@@ -1,9 +1,11 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import javax.swing.JComboBox;
 
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JComboBoxFixture;
+import org.fitfest.core.CommandProcessor;
+import org.fitfest.core.RowHandler;
 
 public class CheckComboBoxItemCommandProcessor implements CommandProcessor
 {

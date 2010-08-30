@@ -1,7 +1,9 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JLabelFixture;
+import org.fitfest.core.CommandProcessor;
+import org.fitfest.core.RowHandler;
 
 public class CheckLabelCommandProcessor implements CommandProcessor
 {

@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
+import org.fitfest.core.commandprocessor.CheckComboBoxItemCommandProcessor;
+import org.fitfest.core.commandprocessor.EnterTextCommandProcessor;
 import org.fitfest.core.commandprocessor.SelectComboBoxItem;
 import org.fitfest.core.commandprocessor.SelectComboBoxItemRegex;
 
