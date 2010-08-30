@@ -1,15 +1,12 @@
 package org.fitfest.core.commandprocessor;
 
-import javax.swing.JComboBox;
 
-import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JComboBoxFixture;
 import org.fitfest.core.CommandProcessor;
 import org.fitfest.core.RowHandler;
 
-public class CheckComboBoxItemCommandProcessor implements CommandProcessor
+public class CheckComboBoxItemCommandProcessor extends ComboBoxAbstractCommandProcessor
 {
-
     @Override
     public String getCommandString()
     {
@@ -17,19 +14,10 @@ public class CheckComboBoxItemCommandProcessor implements CommandProcessor
     }
 
     @Override
-    public void handleRow( final FrameFixture window, final RowHandler rowHandler )
+    public boolean evaluate( RowHandler rowHandler, JComboBoxFixture fixture )
     {
-        final JComboBoxFixture comboBoxFixture = window.comboBox( rowHandler.getText( 1 ) );
-        try
-        {
-            comboBoxFixture.requireSelection( rowHandler.getText( 2 ) );
-            rowHandler.right( 2 );
-        }
-        catch ( final AssertionError e )
-        {
-            rowHandler.wrong( 2, comboBoxFixture.targetCastedTo( JComboBox.class ).getSelectedItem().toString() );
-        }
-
+        fixture.requireSelection( rowHandler.getText( 2 ) );
+        return true;
     }
 
 }

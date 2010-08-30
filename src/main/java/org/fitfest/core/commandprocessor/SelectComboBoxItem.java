@@ -3,21 +3,15 @@ package org.fitfest.core.commandprocessor;
 import org.fest.swing.exception.LocationUnavailableException;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JComboBoxFixture;
-import org.fitfest.core.AbstractCommandProcessor;
+import org.fitfest.core.ComboBoxAbstractCommandProcessor;
 import org.fitfest.core.RowHandler;
 
-public class SelectComboBoxItem extends AbstractCommandProcessor<JComboBoxFixture>
+public class SelectComboBoxItem extends ComboBoxAbstractCommandProcessor
 {
     @Override
     public String getCommandString()
     {
         return "selectComboBoxItem";
-    }
-
-    @Override
-    public JComboBoxFixture findFixture(FrameFixture window, RowHandler rowHandler)
-    {
-        return window.comboBox( rowHandler.getText( 1 ) );
     }
 
     @Override

@@ -102,6 +102,11 @@ public class FitfestFixture extends TableFixture
         screenshot( getCell( row, column ) );
     }
 
+    protected void append( int row, int column, String text )
+    {
+        getCell( row, column ).addToBody( text );
+    }
+    
     protected void screenshot( Parse cell )
     {
         File directory = new File( FITNESSE_ROOT + SCREENSHOT_HTML_PATH );
@@ -152,7 +157,7 @@ public class FitfestFixture extends TableFixture
         @Override
         public void append( int column, String text )
         {
-            getCell( row, column ).addToBody( text );
+            FitfestFixture.this.append( row, column, text );
         }
         
         @Override
