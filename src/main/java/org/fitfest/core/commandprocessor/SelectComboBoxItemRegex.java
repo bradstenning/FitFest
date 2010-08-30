@@ -1,10 +1,11 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import java.util.regex.Pattern;
 
 import org.fest.swing.fixture.JComboBoxFixture;
+import org.fitfest.core.RowHandler;
 
-public class SelectComboBoxItemRegexCommandProcessor extends SelectComboBoxItemCommandProcessor
+public class SelectComboBoxItemRegex extends SelectComboBoxItem
 {
     @Override
     public String getCommandString()

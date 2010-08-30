@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
+import org.fitfest.core.commandprocessor.SelectComboBoxItem;
+import org.fitfest.core.commandprocessor.SelectComboBoxItemRegex;
+
 public class CommandSelector
 {
     private final Map<String, CommandProcessor> commandHandlers = new HashMap<String, CommandProcessor>();
@@ -15,7 +18,8 @@ public class CommandSelector
         addCommandProcessor( new ClickCommandProcessor() );
         addCommandProcessor( new EnterTextCommandProcessor() );
         addCommandProcessor( new CheckTextCommandProcessor() );
-        addCommandProcessor( new SelectComboBoxItemCommandProcessor() );
+        addCommandProcessor( new SelectComboBoxItem() );
+        addCommandProcessor( new SelectComboBoxItemRegex() );
         addCommandProcessor( new CheckComboBoxItemCommandProcessor() );
         addCommandProcessor( new SleepCommandProcessor() );
         addCommandProcessor( new BackgroundColorCommandProcessor() );
