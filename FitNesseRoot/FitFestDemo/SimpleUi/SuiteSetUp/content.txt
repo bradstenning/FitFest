@@ -1,2 +1,5 @@
-!|org.fitfest.core.JNLPFixture|
-|http://localhost/jaws/apps/launchDemo.jnlp|||
+!|org.fitfest.core.JavaAppFixture|
+|Main|||
+
+#!|org.fitfest.core.JNLPFixture|
+#|http://localhost/jaws/apps/launchDemo.jnlp|||
