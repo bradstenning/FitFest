@@ -4,18 +4,12 @@ import org.fest.swing.exception.LocationUnavailableException;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JComboBoxFixture;
 
-public class SelectComboBoxItemCommandProcessor extends AbstractCommandProcessor<JComboBoxFixture>
+public class SelectComboBoxItemCommandProcessor extends ComboBoxAbstractCommandProcessor
 {
     @Override
     public String getCommandString()
     {
         return "selectComboBoxItem";
-    }
-
-    @Override
-    public JComboBoxFixture findFixture(FrameFixture window, RowHandler rowHandler)
-    {
-        return window.comboBox( rowHandler.getText( 1 ) );
     }
 
     @Override
