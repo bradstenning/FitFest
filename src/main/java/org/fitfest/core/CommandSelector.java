@@ -6,10 +6,16 @@ import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-import org.fitfest.core.commandprocessor.CheckComboBoxItemCommandProcessor;
-import org.fitfest.core.commandprocessor.EnterTextCommandProcessor;
+import org.fitfest.core.commandprocessor.BackgroundColor;
+import org.fitfest.core.commandprocessor.CheckComboBoxItem;
+import org.fitfest.core.commandprocessor.CheckText;
+import org.fitfest.core.commandprocessor.Click;
+import org.fitfest.core.commandprocessor.CommandProcessor;
+import org.fitfest.core.commandprocessor.EnterText;
+import org.fitfest.core.commandprocessor.Screenshot;
 import org.fitfest.core.commandprocessor.SelectComboBoxItem;
 import org.fitfest.core.commandprocessor.SelectComboBoxItemRegex;
+import org.fitfest.core.commandprocessor.Sleep;
 
 public class CommandSelector
 {
@@ -17,15 +23,15 @@ public class CommandSelector
 
     public CommandSelector()
     {
-        addCommandProcessor( new ClickCommandProcessor() );
-        addCommandProcessor( new EnterTextCommandProcessor() );
-        addCommandProcessor( new CheckTextCommandProcessor() );
+        addCommandProcessor( new Click() );
+        addCommandProcessor( new EnterText() );
+        addCommandProcessor( new CheckText() );
         addCommandProcessor( new SelectComboBoxItem() );
         addCommandProcessor( new SelectComboBoxItemRegex() );
-        addCommandProcessor( new CheckComboBoxItemCommandProcessor() );
-        addCommandProcessor( new SleepCommandProcessor() );
-        addCommandProcessor( new BackgroundColorCommandProcessor() );
-        addCommandProcessor( new ScreenshotCommandProcessor() );
+        addCommandProcessor( new CheckComboBoxItem() );
+        addCommandProcessor( new Sleep() );
+        addCommandProcessor( new BackgroundColor() );
+        addCommandProcessor( new Screenshot() );
 
         try
         {

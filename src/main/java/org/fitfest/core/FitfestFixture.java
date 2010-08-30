@@ -11,6 +11,7 @@ import org.fest.swing.core.Robot;
 import org.fest.swing.finder.WindowFinder;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.image.ScreenshotTaker;
+import org.fitfest.core.commandprocessor.CommandProcessor;
 
 import fit.Parse;
 import fitnesse.fixtures.TableFixture;

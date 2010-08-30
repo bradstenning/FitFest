@@ -1,9 +1,10 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JTextComponentFixture;
+import org.fitfest.core.RowHandler;
 
-public class CheckTextCommandProcessor extends AbstractCommandProcessor<JTextComponentFixture>
+public class CheckText extends AbstractCommandProcessor<JTextComponentFixture>
 {
 
     @Override

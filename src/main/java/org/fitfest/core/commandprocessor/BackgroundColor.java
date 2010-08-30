@@ -1,12 +1,13 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import java.awt.Component;
 
 import org.fest.swing.core.ComponentFinder;
 import org.fest.swing.fixture.ComponentFixture;
 import org.fest.swing.fixture.FrameFixture;
+import org.fitfest.core.RowHandler;
 
-public class BackgroundColorCommandProcessor extends AbstractCommandProcessor<ComponentFixture<Component>>
+public class BackgroundColor extends AbstractCommandProcessor<ComponentFixture<Component>>
 {
     @Override
     public String getCommandString()

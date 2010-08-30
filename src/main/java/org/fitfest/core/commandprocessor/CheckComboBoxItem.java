@@ -2,10 +2,9 @@ package org.fitfest.core.commandprocessor;
 
 
 import org.fest.swing.fixture.JComboBoxFixture;
-import org.fitfest.core.CommandProcessor;
 import org.fitfest.core.RowHandler;
 
-public class CheckComboBoxItemCommandProcessor extends ComboBoxAbstractCommandProcessor
+public class CheckComboBoxItem extends ComboBoxAbstract
 {
     @Override
     public String getCommandString()

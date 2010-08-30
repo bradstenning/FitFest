@@ -1,14 +1,15 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import javax.swing.JComboBox;
 
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JComboBoxFixture;
+import org.fitfest.core.RowHandler;
 
-public abstract class ComboBoxAbstractCommandProcessor extends AbstractCommandProcessor<JComboBoxFixture>
+public abstract class ComboBoxAbstract extends AbstractCommandProcessor<JComboBoxFixture>
 {
 
-    public ComboBoxAbstractCommandProcessor()
+    public ComboBoxAbstract()
     {
         super();
     }

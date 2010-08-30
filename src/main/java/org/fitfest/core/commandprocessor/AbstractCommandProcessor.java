@@ -1,6 +1,7 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import org.fest.swing.fixture.FrameFixture;
+import org.fitfest.core.RowHandler;
 
 public abstract class AbstractCommandProcessor<F> implements CommandProcessor
 {

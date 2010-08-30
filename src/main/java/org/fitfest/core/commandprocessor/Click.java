@@ -1,8 +1,9 @@
-package org.fitfest.core;
+package org.fitfest.core.commandprocessor;
 
 import org.fest.swing.fixture.FrameFixture;
+import org.fitfest.core.RowHandler;
 
-public class ClickCommandProcessor implements CommandProcessor
+public class Click implements CommandProcessor
 {
     public String getCommandString()
     {

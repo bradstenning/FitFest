@@ -3,10 +3,9 @@ package org.fitfest.core.commandprocessor;
 import org.fest.swing.exception.LocationUnavailableException;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JComboBoxFixture;
-import org.fitfest.core.ComboBoxAbstractCommandProcessor;
 import org.fitfest.core.RowHandler;
 
-public class SelectComboBoxItem extends ComboBoxAbstractCommandProcessor
+public class SelectComboBoxItem extends ComboBoxAbstract
 {
     @Override
     public String getCommandString()
