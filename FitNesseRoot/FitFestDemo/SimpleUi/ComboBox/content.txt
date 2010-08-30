@@ -1,6 +1,6 @@
 !|org.fitfest.core.FitfestFixture|Simple UI|
 |checkComboBoxItem               |comboBox|first   |
-|selectComboBoxItem              |comboBox|seond   |
+|selectComboBoxItem              |comboBox|second   |
 |checkComboBoxItem               |comboBox|second   |
 
 !|org.fitfest.core.AntiFitfestFixture|Simple UI|

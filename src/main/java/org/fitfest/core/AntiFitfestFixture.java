@@ -13,6 +13,10 @@ public class AntiFitfestFixture extends FitfestFixture
     protected void wrong( int row, int column, String actual )
     {
         super.right( row, column );
+        super.append( row, column, " <span class=\"fit_label\">expected</span>");
+        super.append( row, column, "<hr>");
+        super.append( row, column, actual);
+        super.append( row, column, " <span class=\"fit_label\">actual</span>" );
     }
 
     @Override
