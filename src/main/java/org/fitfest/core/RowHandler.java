@@ -10,5 +10,7 @@ public interface RowHandler
 
     public void wrong( int column, String actual );
 
+    public void wrong( int column, Throwable e );
+
     public void screenshot( int column );
 }
