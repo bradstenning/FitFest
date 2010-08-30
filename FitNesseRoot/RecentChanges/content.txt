@@ -1,3 +1,4 @@
+|FitFestDemo.SimpleUi.ComboBox||20:45:44 Sun, Aug 29, 2010|
 |FitFestDemo.SimpleUi.BackgroundColor||19:14:44 Sun, Aug 29, 2010|
 |FitFestDemo.SimpleUi.DummyTest||18:43:18 Sun, Aug 29, 2010|
 |FitFestDemo.SimpleUi.TextField||18:37:50 Sun, Aug 29, 2010|
@@ -5,7 +6,6 @@
 |FitFestDemo.SimpleUi.SuiteSetUp||17:47:03 Sun, Aug 29, 2010|
 |||16:48:33 Sun, Aug 29, 2010|
 |FitFestDemo.SimpleUi.SleepCommand||20:35:08 Wed, Apr 14, 2010|
-|FitFestDemo.SimpleUi.ComboBox||20:34:03 Wed, Apr 14, 2010|
 |FitFestDemo.SimpleUi.ClickButton||20:33:41 Wed, Apr 14, 2010|
 |FitFestDemo.SimpleUi.SetUp||18:04:11 Wed, Mar 03, 2010|
 |FrontPage||22:52:35 Wed, Feb 24, 2010|

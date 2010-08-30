@@ -11,6 +11,8 @@ public interface RowHandler
     public void wrong( int column, String actual );
 
     public void wrong( int column, Throwable e );
+    
+    public void append( int column, String text );
 
     public void screenshot( int column );
 }

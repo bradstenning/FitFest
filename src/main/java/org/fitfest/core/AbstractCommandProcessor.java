@@ -13,17 +13,32 @@ public abstract class AbstractCommandProcessor<F> implements CommandProcessor
     
     public abstract boolean evaluate(RowHandler rowHandler, F fixture);
     
-    public abstract String actual(FrameFixture window, RowHandler rowHandler, F fixture);
+    public abstract String actual(F fixture);
+    
+    public void success(RowHandler rowHandler)
+    {
+        rowHandler.right( 2 );
+    }
+    
+    public void failure(RowHandler rowHandler, F fixture)
+    {
+        rowHandler.wrong( 2, actual(fixture) );
+    }
+    
+    public void error(RowHandler rowHandler, Throwable e)
+    {
+        rowHandler.wrong( 2, e );
+    }
     
     public void handleException( FrameFixture window, RowHandler rowHandler, F fixture, Throwable e )
     {
         if(e instanceof AssertionError)
         {
-            rowHandler.wrong( 2, actual(window, rowHandler, fixture) );
+            failure(rowHandler, fixture);
         }
         else
         {
-            rowHandler.wrong( 2, e );
+            error(rowHandler, e);
         }
     }
     
@@ -35,11 +50,11 @@ public abstract class AbstractCommandProcessor<F> implements CommandProcessor
         {
             if(evaluate(rowHandler, fixture))
             {
-                rowHandler.right( 2 );
+                success( rowHandler );
             }
             else
             {
-                rowHandler.wrong( 2, actual(window, rowHandler, fixture) );
+                failure( rowHandler, fixture );
             }
         }
         catch(Throwable e)
