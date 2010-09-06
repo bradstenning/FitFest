@@ -4,7 +4,7 @@ import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JLabelFixture;
 import org.fitfest.core.RowHandler;
 
-public class CheckLabel implements CommandProcessor
+public class CheckLabel extends AbstractCommandProcessor<JLabelFixture>
 {
 
     @Override
@@ -14,19 +14,22 @@ public class CheckLabel implements CommandProcessor
     }
 
     @Override
-    public void handleRow( final FrameFixture window, final RowHandler rowHandler )
+    public JLabelFixture findFixture( FrameFixture window, RowHandler rowHandler )
     {
-        final JLabelFixture label = window.label( rowHandler.getText( 1 ) );
-        try
-        {
-            label.requireText( rowHandler.getText( 2 ) );
-            rowHandler.right( 2 );
-        }
-        catch ( final AssertionError e )
-        {
-            rowHandler.wrong( 2, label.text() );
-        }
+        return window.label( rowHandler.getText( 1 ) );
+    }
 
+    @Override
+    public boolean evaluate( RowHandler rowHandler, JLabelFixture fixture )
+    {
+        fixture.requireText( rowHandler.getText( 2 ) );
+        return true;
+    }
+
+    @Override
+    public String actual( JLabelFixture fixture )
+    {
+        return fixture.text();
     }
 
 }

@@ -9,7 +9,9 @@ public abstract class AbstractCommandProcessor<F> implements CommandProcessor
     {
         super();
     }
-
+    /** column to be marked wrong after a failure */
+    protected int m_errorColumn = 2;
+    
     public abstract F findFixture(FrameFixture window, RowHandler rowHandler);
     
     public abstract boolean evaluate(RowHandler rowHandler, F fixture);
@@ -18,17 +20,17 @@ public abstract class AbstractCommandProcessor<F> implements CommandProcessor
     
     public void success(RowHandler rowHandler)
     {
-        rowHandler.right( 2 );
+        rowHandler.right( m_errorColumn );
     }
     
     public void failure(RowHandler rowHandler, F fixture)
     {
-        rowHandler.wrong( 2, actual(fixture) );
+        rowHandler.wrong( m_errorColumn, actual(fixture) );
     }
     
     public void error(RowHandler rowHandler, Throwable e)
     {
-        rowHandler.wrong( 2, e );
+        rowHandler.wrong( m_errorColumn, e );
     }
     
     public void handleException( FrameFixture window, RowHandler rowHandler, F fixture, Throwable e )

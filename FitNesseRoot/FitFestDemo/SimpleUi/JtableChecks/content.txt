@@ -1,0 +1,11 @@
+!|org.fitfest.core.FitfestFixture|Simple UI|
+|checkTableCell|table|0|1|1|
+|checkTableCell|table|2|0|item2|
+|checkTableCell|table|1|0||
+|checkTableCell|table|2|1|2|
+
+!|org.fitfest.core.AntiFitfestFixture|Simple UI|
+|checkTableCell|table|2|0|item6|
+|checkTableCell|table|0|1|2|
+|checkTableCell|table|2|1|2.0|
+|checkTableCell|table|6|6|6|

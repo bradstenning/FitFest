@@ -1,0 +1,8 @@
+!|org.fitfest.core.FitfestFixture|Simple UI                                    |
+|checkLabel                      |textFieldLabel         |Text Field:          |
+|checkLabel                      |formattedTextFieldLabel|Formatted Text Field:|
+|checkLabel                      |comboBoxLabel          |Combo Box            |
+
+!|org.fitfest.core.AntiFitfestFixture|Simple UI                         |
+|checkLabel                          |formattedTextFieldLabel|Combo Box:|
+|checkLabel                          |textFieldLabel         |nope      |

@@ -8,6 +8,8 @@ import java.util.jar.Manifest;
 
 import org.fitfest.core.commandprocessor.BackgroundColor;
 import org.fitfest.core.commandprocessor.CheckComboBoxItem;
+import org.fitfest.core.commandprocessor.CheckLabel;
+import org.fitfest.core.commandprocessor.CheckTableCell;
 import org.fitfest.core.commandprocessor.CheckText;
 import org.fitfest.core.commandprocessor.Click;
 import org.fitfest.core.commandprocessor.CommandProcessor;
@@ -32,6 +34,8 @@ public class CommandSelector
         addCommandProcessor( new Sleep() );
         addCommandProcessor( new BackgroundColor() );
         addCommandProcessor( new Screenshot() );
+        addCommandProcessor( new CheckTableCell() );
+        addCommandProcessor( new CheckLabel() );
 
         try
         {

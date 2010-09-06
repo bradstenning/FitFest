@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_17" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_20" class="java.beans.XMLDecoder"> 
  <object class="com.jformdesigner.model.FormModel"> 
   <void property="contentType"> 
    <string>form/swing</string> 
@@ -17,7 +17,7 @@
        </void> 
        <void method="setProperty"> 
         <string>$rowSpecs</string> 
-        <string>unrelgap, default, linegap, default, linegap, default, linegap, default, linegap, default, unrelgap</string> 
+        <string>unrelgap, default, linegap, default, linegap, default, linegap, default, linegap, default, linegap, default, unrelgap</string> 
        </void> 
        <void method="setProperty"> 
         <string>$columnGroupIds</string> 
@@ -66,7 +66,7 @@
          <string>Text Field:</string> 
         </void> 
         <void property="name"> 
-         <string>label2</string> 
+         <string>textFieldLabel</string> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -112,7 +112,7 @@
          <string>Formatted Text Field:</string> 
         </void> 
         <void property="name"> 
-         <string>label3</string> 
+         <string>formattedTextFieldLabel</string> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -158,7 +158,7 @@
          <string>Combo Box</string> 
         </void> 
         <void property="name"> 
-         <string>label1</string> 
+         <string>comboBoxLabel</string> 
         </void> 
        </object> 
        <object class="com.jformdesigner.model.FormLayoutConstraints"> 
@@ -214,6 +214,155 @@
        </object> 
       </void> 
       <void method="add"> 
+       <object class="com.jformdesigner.model.FormContainer"> 
+        <string>javax.swing.JScrollPane</string> 
+        <object class="com.jformdesigner.model.FormLayoutManager"> 
+         <class>javax.swing.JScrollPane</class> 
+        </object> 
+        <void property="name"> 
+         <string>scrollPane1</string> 
+        </void> 
+        <void method="add"> 
+         <object class="com.jformdesigner.model.FormComponent"> 
+          <string>javax.swing.JTable</string> 
+          <void method="setProperty"> 
+           <string>model</string> 
+           <object class="com.jformdesigner.model.SwingTableModel"> 
+            <object class="java.util.Vector"> 
+             <void method="add"> 
+              <object class="java.util.Vector"> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+               <void method="add"> 
+                <double>1.0</double> 
+               </void> 
+              </object> 
+             </void> 
+             <void method="add"> 
+              <object class="java.util.Vector"> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+              </object> 
+             </void> 
+             <void method="add"> 
+              <object class="java.util.Vector"> 
+               <void method="add"> 
+                <string>item2</string> 
+               </void> 
+               <void method="add"> 
+                <double>2.0</double> 
+               </void> 
+              </object> 
+             </void> 
+             <void method="add"> 
+              <object class="java.util.Vector"> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+              </object> 
+             </void> 
+             <void method="add"> 
+              <object class="java.util.Vector"> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+              </object> 
+             </void> 
+             <void method="add"> 
+              <object class="java.util.Vector"> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+               <void method="add"> 
+                <null/> 
+               </void> 
+              </object> 
+             </void> 
+            </object> 
+            <object class="java.util.Vector"> 
+             <void method="add"> 
+              <string>Column 1</string> 
+             </void> 
+             <void method="add"> 
+              <string>Column 2</string> 
+             </void> 
+            </object> 
+            <object class="java.util.Vector"> 
+             <void method="add"> 
+              <null/> 
+             </void> 
+             <void method="add"> 
+              <class>java.lang.Double</class> 
+             </void> 
+            </object> 
+            <object class="java.util.Vector"> 
+             <void method="add"> 
+              <null/> 
+             </void> 
+             <void method="add"> 
+              <null/> 
+             </void> 
+            </object> 
+            <object class="java.util.Vector"> 
+             <void method="add"> 
+              <object class="com.jformdesigner.model.SwingTableColumn"> 
+               <array class="java.lang.Object" length="3"> 
+                <void index="0"> 
+                 <string>item1</string> 
+                </void> 
+                <void index="1"> 
+                 <string>item2</string> 
+                </void> 
+                <void index="2"> 
+                 <string>item3</string> 
+                </void> 
+               </array> 
+               <int>0</int> 
+               <int>0</int> 
+               <int>0</int> 
+               <boolean>true</boolean> 
+              </object> 
+             </void> 
+             <void method="add"> 
+              <null/> 
+             </void> 
+            </object> 
+           </object> 
+          </void> 
+          <void property="name"> 
+           <string>table</string> 
+          </void> 
+         </object> 
+        </void> 
+       </object> 
+       <object class="com.jformdesigner.model.FormLayoutConstraints"> 
+        <class>com.jgoodies.forms.layout.CellConstraints</class> 
+        <void method="setProperty"> 
+         <string>gridX</string> 
+         <int>2</int> 
+        </void> 
+        <void method="setProperty"> 
+         <string>gridY</string> 
+         <int>10</int> 
+        </void> 
+        <void method="setProperty"> 
+         <string>gridWidth</string> 
+         <int>5</int> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
        <object class="com.jformdesigner.model.FormComponent"> 
         <string>javax.swing.JButton</string> 
         <void method="setProperty"> 
@@ -236,7 +385,7 @@
         </void> 
         <void method="setProperty"> 
          <string>gridY</string> 
-         <int>10</int> 
+         <int>12</int> 
         </void> 
         <void method="setProperty"> 
          <string>gridWidth</string> 
@@ -258,7 +407,7 @@
        <string>size</string> 
        <object class="java.awt.Dimension"> 
         <int>505</int> 
-        <int>300</int> 
+        <int>310</int> 
        </object> 
       </void> 
      </object> 
