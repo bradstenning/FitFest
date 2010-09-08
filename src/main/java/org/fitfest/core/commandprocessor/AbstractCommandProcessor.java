@@ -30,6 +30,7 @@ public abstract class AbstractCommandProcessor<F> implements CommandProcessor
     
     public void error(RowHandler rowHandler, Throwable e)
     {
+        e.printStackTrace();
         rowHandler.wrong( m_errorColumn, e );
     }
     
@@ -48,10 +49,10 @@ public abstract class AbstractCommandProcessor<F> implements CommandProcessor
     @Override
     public void handleRow( final FrameFixture window, final RowHandler rowHandler )
     {
-        F fixture = findFixture(window, rowHandler);
+        F fixture = findFixture( window, rowHandler );
         try
         {
-            if(evaluate(rowHandler, fixture))
+            if ( evaluate( rowHandler, fixture ) )
             {
                 success( rowHandler );
             }
@@ -60,9 +61,10 @@ public abstract class AbstractCommandProcessor<F> implements CommandProcessor
                 failure( rowHandler, fixture );
             }
         }
-        catch(Throwable e)
+        catch ( Throwable e )
         {
-            handleException(window, rowHandler, fixture, e);
+            handleException( window, rowHandler, fixture, e );
         }
     }
+    
 }

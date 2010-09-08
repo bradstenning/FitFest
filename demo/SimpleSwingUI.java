@@ -109,6 +109,7 @@ public class SimpleSwingUI extends JPanel {
 						"item3"
 					}))));
 			}
+			table.setRowHeight(17);
 			table.setName("table");
 			scrollPane1.setViewportView(table);
 		}

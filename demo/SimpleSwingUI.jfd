@@ -340,6 +340,10 @@
             </object> 
            </object> 
           </void> 
+          <void method="setProperty"> 
+           <string>rowHeight</string> 
+           <int>17</int> 
+          </void> 
           <void property="name"> 
            <string>table</string> 
           </void> 

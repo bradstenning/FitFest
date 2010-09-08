@@ -13,6 +13,7 @@ import org.fitfest.core.commandprocessor.CheckTableCell;
 import org.fitfest.core.commandprocessor.CheckText;
 import org.fitfest.core.commandprocessor.Click;
 import org.fitfest.core.commandprocessor.CommandProcessor;
+import org.fitfest.core.commandprocessor.EnterTableCell;
 import org.fitfest.core.commandprocessor.EnterText;
 import org.fitfest.core.commandprocessor.Screenshot;
 import org.fitfest.core.commandprocessor.SelectComboBoxItem;
@@ -35,6 +36,7 @@ public class CommandSelector
         addCommandProcessor( new BackgroundColor() );
         addCommandProcessor( new Screenshot() );
         addCommandProcessor( new CheckTableCell() );
+        addCommandProcessor( new EnterTableCell() );
         addCommandProcessor( new CheckLabel() );
 
         try

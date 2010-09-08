@@ -9,3 +9,14 @@
 |checkTableCell|table|0|1|2|
 |checkTableCell|table|2|1|2.0|
 |checkTableCell|table|6|6|6|
+
+!|org.fitfest.core.FitfestFixture|Simple UI|
+|enterTableCell|table|1|0|item3|
+|enterTableCell|table|1|0|item2|
+|enterTableCell|table|0|1|5.0|
+|enterTableCell|table|1|1|2|
+|enterTableCell|table|0|0|item3|
+|checkTableCell|table|0|1|5|
+|checkTableCell|table|1|1|2|
+
+
