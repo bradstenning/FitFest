@@ -3,7 +3,7 @@ package org.fitfest.core.commandprocessor;
 import org.fest.swing.fixture.JTableCellFixture;
 import org.fitfest.core.RowHandler;
 
-public class EnterTableCell extends CheckTableCell
+public class EnterTableCell extends AbstractTableCellCommandProcessor
 {
 
     @Override
