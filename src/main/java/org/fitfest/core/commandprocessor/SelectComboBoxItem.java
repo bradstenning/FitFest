@@ -31,13 +31,11 @@ public class SelectComboBoxItem extends ComboBoxAbstract
     {
         if( e instanceof LocationUnavailableException )
         {
-            LocationUnavailableException lue = (LocationUnavailableException)e;
             rowHandler.wrong( 2 );
             rowHandler.append( 2, "<hr> " + e.getMessage() );
+            return;
         }
-        else
-        {
-            super.handleException( window, rowHandler, fixture, e );
-        }
+        
+        super.handleException( window, rowHandler, fixture, e );
     }
 }
