@@ -1,6 +1,7 @@
 package org.fitfest.core;
 
 import java.io.File;
+import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,7 +40,11 @@ public class CommandFinder
         try
         {
             String className = file.substring( 0, file.length() - ".class".length() );
-            Object potentialCommand = Class.forName( pckgname + "." + className ).newInstance();
+            Class<?> clazz = Class.forName( pckgname + "." + className );
+            
+            if(Modifier.isAbstract( clazz.getModifiers() ) || clazz.isAnonymousClass()) return;
+            
+            Object potentialCommand = clazz.newInstance();
             if ( potentialCommand instanceof CommandProcessor )
             {
                 commandProcessors.add( (CommandProcessor) potentialCommand );
