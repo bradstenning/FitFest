@@ -16,9 +16,14 @@ import sun.misc.Launcher;
  */
 public class CommandFinder
 {
-    public List<CommandProcessor> find(String pckgname) 
+    /**
+     * Find all {@link CommandProcessor} in the given package and return the list of them.
+     * @param packageName Example: org.fitfest.core.commandprocessors
+     * @return CommandProccessor list (empty list if not found)
+     */
+    public List<CommandProcessor> find(String packageName) 
     {
-        URL url = getUrlForPackage( pckgname );
+        URL url = getUrlForPackage( packageName );
         if(url == null) return Collections.emptyList();
         
         File directory = new File(url.getFile());
@@ -27,12 +32,18 @@ public class CommandFinder
         List<CommandProcessor> commandProcessors = new ArrayList<CommandProcessor>();
         for ( String file : directory.list() )
         {
-            addIndividualClass( pckgname, file, commandProcessors );
+            addIndividualClass( packageName, file, commandProcessors );
         }
 
         return commandProcessors;
     }
 
+    /**
+     * Adds the command processor to the list if it's valid. 
+     * @param pckgname
+     * @param file
+     * @param commandProcessors
+     */
     protected void addIndividualClass( String pckgname, String file, List<CommandProcessor> commandProcessors )
     {
         if( !file.endsWith( ".class" )) return; 
@@ -58,10 +69,16 @@ public class CommandFinder
         }
     }
 
-    protected URL getUrlForPackage(final String pckgname )
+    /**
+     * Changes package name (com.something.else) to a URL that the 
+     * class loader will use.
+     * @param packageName
+     * @return
+     */
+    protected URL getUrlForPackage(final String packageName )
     {
         // path magic that needs to be done.
-        String name = new String(pckgname);
+        String name = new String(packageName);
         if (!name.startsWith("/"))  // or it will try to add the package name again
         {
             name = "/" + name;
@@ -71,6 +88,10 @@ public class CommandFinder
         return Launcher.class.getResource(name);
     }
 
+    /** 
+     * Test method 
+     * @param args
+     */
     public static void main( String[] args )
     {
         CommandFinder commandFinder = new CommandFinder();
