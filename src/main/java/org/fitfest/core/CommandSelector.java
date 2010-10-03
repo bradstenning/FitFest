@@ -1,7 +1,9 @@
 package org.fitfest.core;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
@@ -12,44 +14,91 @@ public class CommandSelector
 {
     private final Map<String, CommandProcessor> commandHandlers = new HashMap<String, CommandProcessor>();
 
-    public CommandSelector()
+    private void addCommandProcessor( CommandProcessor commandProcessor )
     {
-        CommandFinder commandFinder = new CommandFinder();
-        List<CommandProcessor> commandProcessors = commandFinder.find("org.fitfest.core.commandprocessor");
-        for ( CommandProcessor commandProcessor : commandProcessors )
-        {
-            addCommandProcessor( commandProcessor );
-        }
+//        System.out.println(commandProcessor.getClass());
+        commandHandlers.put( commandProcessor.getCommandString(), commandProcessor );
+    }
 
+    private void addClass(String className)
+    {
         try
         {
-            for ( String path : System.getProperty( "java.class.path" ).split( System.getProperty( "path.separator" ) ) )
+            Class<?> clazz = Class.forName( className );
+            if(CommandProcessor.class.isAssignableFrom( clazz )
+                    && !Modifier.isAbstract( clazz.getModifiers() )
+                    && !clazz.isInterface() )
             {
-                if ( path.endsWith( ".jar" ) || path.endsWith( ".zip" ) )
-                {
-                    JarFile file = new JarFile( path );
-                    Manifest manifest = file.getManifest();
-                    for ( String classFileName : manifest.getEntries().keySet() )
-                    {
-                        if ( "true".equalsIgnoreCase( manifest.getAttributes( classFileName ).getValue( "org-fitfest-core-CommandProcessor" ) ) )
-                        {
-                            Class<?> clazz = Class.forName( classFileName.substring( 0, classFileName.length() - ".class".length() ).replaceAll( "/", "." ) );
-                            addCommandProcessor( (CommandProcessor) clazz.newInstance() );
-                        }
-                    }
-                }
+                addCommandProcessor( (CommandProcessor) clazz.newInstance() );
             }
         }
-        catch ( Throwable e )
+        catch ( ClassNotFoundException e )
         {
-            // nothing we can do about it
-            e.printStackTrace();
+        }
+        catch ( InstantiationException e )
+        {
+        }
+        catch ( IllegalAccessException e )
+        {
+        }
+    }
+    
+    private void addClassesInDirectory( File parent, String parentPackage )
+    {
+        for(File child : parent.listFiles())
+        {
+            if(child.isDirectory())
+            {
+                addClassesInDirectory( child, parentPackage.equals( "" ) ? child.getName() : parentPackage + '.' + child.getName() );
+            }
+            else if(child.isFile() && child.getName().endsWith( ".class" ))
+            {
+                addClass( parentPackage.equals( "" ) ? child.getName().substring( 0, ".class".length() ) : parentPackage + '.' + child.getName().substring( 0, child.getName().length() - ".class".length() ) );
+            }
         }
     }
 
-    private void addCommandProcessor( CommandProcessor commandProcessor )
+    public CommandSelector()
     {
-        commandHandlers.put( commandProcessor.getCommandString(), commandProcessor );
+        for ( String path : System.getProperty( "java.class.path" ).split( System.getProperty( "path.separator" ) ) )
+        {
+            File pathElement = new File(path);
+            
+            if(pathElement.isDirectory())
+            {
+                addClassesInDirectory(pathElement, "");
+            }
+            else if(pathElement.isFile() && (path.endsWith( ".jar" ) || path.endsWith( ".zip" )) )
+            {
+                try
+                {
+                    JarFile file = new JarFile( path );
+                    Manifest manifest = file.getManifest();
+                    for ( String fileName : manifest.getEntries().keySet() )
+                    {
+                        if ( "true".equalsIgnoreCase( manifest.getAttributes( fileName ).getValue( "org-fitfest-core-CommandProcessor" ) ) )
+                        {
+                            if(fileName.endsWith( ".class" ))
+                            {
+                                addClass(fileName.substring( 0, fileName.length() - ".class".length() ).replaceAll( "/", "." ));
+                            }
+                            else
+                            {
+                                CommandFinder finder = new CommandFinder();
+                                for(CommandProcessor commandProcessor : finder.find( fileName.replaceAll( "/", "." ) ) )
+                                {
+                                    addCommandProcessor( commandProcessor );
+                                }
+                            }
+                        }
+                    }
+                }
+                catch(IOException e)
+                {
+                    
+                }
+            }
+        }
     }
 
     public static void main( String[] args )
