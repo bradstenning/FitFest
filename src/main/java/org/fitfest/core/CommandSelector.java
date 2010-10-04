@@ -60,6 +60,8 @@ public class CommandSelector
 
     public CommandSelector()
     {
+        //TODO: add back the fitfest loading first so client code will override the our command names
+        //      not the other way around.
         for ( String path : System.getProperty( "java.class.path" ).split( System.getProperty( "path.separator" ) ) )
         {
             File pathElement = new File(path);
