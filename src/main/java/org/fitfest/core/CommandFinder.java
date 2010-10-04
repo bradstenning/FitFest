@@ -2,10 +2,14 @@ package org.fitfest.core;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
+import java.net.JarURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import org.fitfest.core.commandprocessor.CommandProcessor;
 
@@ -25,33 +29,71 @@ public class CommandFinder
     {
         URL url = getUrlForPackage( packageName );
         if(url == null) return Collections.emptyList();
-        
-        File directory = new File(url.getFile());
-        if (!directory.exists()) return Collections.emptyList(); 
 
+        File directory = new File(url.getFile());
+        if (directory.exists()) 
+            return loadFromDirectory( packageName, directory );
+
+        return loadFromJar( packageName, url );
+    }
+
+    private List<CommandProcessor> loadFromJar( String packageName, URL url )
+    {
+        List<CommandProcessor> commandProcessors = new ArrayList<CommandProcessor>();
+        try
+        {
+            JarURLConnection conn = (JarURLConnection)url.openConnection();
+            String starts = conn.getEntryName();
+            JarFile jfile = conn.getJarFile();
+
+            Enumeration<JarEntry> entries = jfile.entries();
+
+            while (entries.hasMoreElements()) 
+            {
+                JarEntry entry = entries.nextElement();
+                String entryname = entry.getName();
+                if (entryname.startsWith(starts)
+                        &&(entryname.lastIndexOf('/')<=starts.length()))
+                {
+                    if (entryname.startsWith("/")) 
+                        entryname = entryname.substring(1);
+                    entryname = entryname.replace('/','.');
+
+                    addIndividualClass( entryname, commandProcessors );
+
+                }
+            }
+        }
+        catch (Throwable e) {
+            e.printStackTrace();
+        }
+        
+        return commandProcessors;
+    }
+
+    protected List<CommandProcessor> loadFromDirectory( String packageName, File directory )
+    {
         List<CommandProcessor> commandProcessors = new ArrayList<CommandProcessor>();
         for ( String file : directory.list() )
         {
-            addIndividualClass( packageName, file, commandProcessors );
+            addIndividualClass( packageName + "." + file, commandProcessors );
         }
-
+        
         return commandProcessors;
     }
 
     /**
      * Adds the command processor to the list if it's valid. 
-     * @param pckgname
-     * @param file
-     * @param commandProcessors
+     * @param file  Example: org.fitfest.core.commandprocessor.SelectComboBoxItem.class
+     * @param commandProcessors list it will go into if valid
      */
-    protected void addIndividualClass( String pckgname, String file, List<CommandProcessor> commandProcessors )
+    protected void addIndividualClass( String file, List<CommandProcessor> commandProcessors )
     {
         if( !file.endsWith( ".class" )) return; 
-
         try
         {
-            String className = file.substring( 0, file.length() - ".class".length() );
-            Class<?> clazz = Class.forName( pckgname + "." + className );
+            file = file.substring( 0, file.length() - ".class".length() );
+            Class<?> clazz = Class.forName( file );
             
             if(Modifier.isAbstract( clazz.getModifiers() ) || clazz.isAnonymousClass()) return;
             
