@@ -1,6 +1,8 @@
 !path ${FIT_FEST_PATH}/target/classes/
-!path ${FIT_FEST_PATH}/target/classes/forms.jar
 !path ${FIT_FEST_PATH}/target/org.fitfest.core-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+!path ./target/classes/
+!path ./target/org.fitfest.sample-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+
 #!path ${FEST_LIBS_PATH}/fest-swing-1.2.1.jar
 #!path ${FEST_LIBS_PATH}/fest-assert-1.2.jar
 #!path ${FEST_LIBS_PATH}/fest-reflect-1.2.jar

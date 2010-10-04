@@ -1,0 +1,2 @@
+!define FEST_LIBS_PATH {..}
+!define FIT_FEST_PATH {../org.fitfest.core}

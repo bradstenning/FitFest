@@ -1,0 +1,10 @@
+target
+.DS_Store
+.metadata
+FitNesseRoot/updateList
+FitNesseRoot/updateDoNotCopyOverList
+FitNesseRoot/ErrorLogs/*
+FitNesseRoot/files/testResults/*
+FitNesseRoot/RecentChanges/*
+FitNesseRoot/files/screenshots/*
+*-*.zip
